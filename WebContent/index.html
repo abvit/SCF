@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script src="js/angular1.7.2.js"></script>
+<script>
+   ( function () {
+            var app = angular.module("demoapp", []);     
+            app.controller("democontroller", function ($scope, $http) {
+                var response = function (response) { $scope.data = response.data; }
+                $http.get("JsonFile.json").then(response);
+                
+            });
+    })();
+    </script>
+</head>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<body>
+<div class="container-fluid" style="padding:0">
+        <div class="jumbotron" style="background-color:#14366E;color:white;padding-top:20px;padding-bottom:20px;margin-bottom:5px">
+          <h1>Supply Chain Finance</h1>      
+        </div>
+	<div ng-app="demoapp" class="container-fluid" style="padding:0">
+		<div ng-controller="democontroller" >
+			<table class="table table-striped" style="font-size:75%;position:relative">
+				<tr >
+					<th>Customer Id</th>
+					<th>Buyer Id</th>
+					<th>Seller Id</th>
+					<th>Inv Ref No</th>
+					<th>Inv Date</th>
+					<th>Currency</th>
+					<th>Inv Amount</th>
+					<th>Due Date</th>
+					<th>Discounted Amt</th>
+					<th>Discounted Cost</th>
+					<th>Disounted Date</th>
+					<th>Inv Payment Date</th>
+					<th>Inv Status</th>
+					<th>Payment Status</th
+					 >
+				</tr>
+				<tr ng-repeat="item in data">
+					<td>{{item.customer_id}}</td>
+					<td>{{item.buyer_id}}</td>
+					<td>{{item.seller_id}}</td>
+					<td>{{item.inv_ref_no}}</td>
+					<td>{{item.inv_date | date}}</td>
+					<td>{{item.currency}}</td>
+					<td>{{item.inv_amount}}</td>
+					<td>{{item.due_date | date}}</td>
+					<td>{{item.discounted_amt}}</td>
+					<td>{{item.discounted_cost}}</td>
+					<td>{{item.disounted_date | date}}</td>
+					<td>{{item.inv_payment_date | date}}</td>
+					<td>{{item.inv_status}}</td>
+					<td>{{item.payment_status}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+
+</html>
